@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="card m-4">
+    <div class="card-body">
+      <canvas #canvas width="600" height="600"></canvas>
+      <button class="btn btn-primary" (click)="startAnimation()">Start</button>
+      <input type="range" min="-1000" max="1000" #ref (change)="change(ref.value)"/>
+    </div>
+  </div>
+</div>
