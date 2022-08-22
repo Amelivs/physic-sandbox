@@ -11,7 +11,7 @@ import { RendererComponent } from '../renderer/renderer.component';
 })
 export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDestroy {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
 
   public lorenz = new Lorenz({ x: 0, y: 0.1, z: 0 }, { b: 8 / 3, r: 28, w: 10 });
 

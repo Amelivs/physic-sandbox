@@ -10,7 +10,7 @@ import { DoublePendulum } from '../../model/double-pendulum';
 })
 export class DoublePendulumComponent extends RendererComponent implements OnInit, OnDestroy {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
 
   public conditions = {

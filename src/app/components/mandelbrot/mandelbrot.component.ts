@@ -8,7 +8,7 @@ import { Mandelbrot } from '../../model/mandelbrot';
 })
 export class MandelbrotComponent implements OnInit {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
   //public mandelbrot = new Mandelbrot();
   public magnificationFactor = 200;
@@ -45,6 +45,8 @@ export class MandelbrotComponent implements OnInit {
     this.magnificationFactor = value;
     this.repaint();
   }
+
+  public startAnimation() { }
 
   public checkIfBelongsToMandelbrotSet(x: number, y: number) {
     var realComponentOfResult = x;

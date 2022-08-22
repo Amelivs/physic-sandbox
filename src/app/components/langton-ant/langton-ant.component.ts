@@ -10,7 +10,7 @@ import { Langton } from '../../model/langton-ant';
 })
 export class LangtonAntComponent extends RendererComponent implements OnInit, OnDestroy {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
   public langton = new Langton();
   public pixelSize: number;

@@ -10,7 +10,7 @@ import { Pendulum } from '../../model/pendulum';
 })
 export class PendulumComponent extends RendererComponent implements OnInit, OnDestroy {
 
-    @ViewChild('canvas') canvasRef: ElementRef;
+    @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
     public context: CanvasRenderingContext2D;
 
     public pendulum = new Pendulum(Math.PI * 0.9, 0, .1, 1e-2, 0.4);

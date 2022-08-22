@@ -10,7 +10,7 @@ import { GameOfLife } from '../../model/game-of-life';
 })
 export class GameOfLifeComponent extends RendererComponent implements AfterViewInit, OnDestroy {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
   public gameOfLife = new GameOfLife();
   public dim = 0;

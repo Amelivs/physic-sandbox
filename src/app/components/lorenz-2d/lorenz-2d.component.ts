@@ -10,7 +10,7 @@ import { RendererComponent } from '../renderer/renderer.component';
 })
 export class Lorenz2dComponent extends RendererComponent implements OnInit, OnDestroy {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
   public animationId: number;
   public colorTheta = 0;

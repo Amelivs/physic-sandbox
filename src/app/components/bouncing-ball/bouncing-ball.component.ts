@@ -10,7 +10,7 @@ import { BouncingBall } from '../../model/boucing-ball';
 })
 export class BouncingBallComponent extends RendererComponent implements OnInit, OnDestroy {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
   public balls: BouncingBall[] = [];
   public radius = 30;

@@ -10,7 +10,7 @@ import { Kepler } from '../../model/kepler';
 })
 export class KeplerComponent extends RendererComponent implements OnInit {
 
-  @ViewChild('canvas') canvasRef: ElementRef;
+  @ViewChild('canvas', { static: true }) canvasRef: ElementRef;
   public context: CanvasRenderingContext2D;
   public earth = new Kepler(149598094, 0.017);
   public mars = new Kepler(227939184, 0.093);
