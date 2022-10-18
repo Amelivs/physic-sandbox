@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import * as THREE from 'Three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import { Lorenz } from '../../model/lorenz';
 import { RendererComponent } from '../renderer/renderer.component';
@@ -21,9 +22,9 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
   public renderer: THREE.WebGLRenderer;
   public geometry: THREE.BufferGeometry;
   public material: THREE.LineBasicMaterial;
-  public rotSpeed: number;
-  public line: any;
-  public index: number;
+  public line: THREE.Line;
+  public index = 0;
+  public controls: OrbitControls;
 
   constructor() {
     super();
@@ -43,41 +44,30 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
 
     this.camera.position.z = 70;
 
-    this.rotSpeed = .001;
-
     // geometry
     this.geometry = new THREE.BufferGeometry();
 
     // attributes
     var positions = new Float32Array(this.MAX_POINTS * 3); // 3 vertices per point
-    this.geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    // draw range
-    //var drawCount = 2; // draw the first 2 points, only
-    //geometry.setDrawRange(0, drawCount);
+    // An axis object to visualize the 3 axes in a simple way.
+    // The X axis is red. The Y axis is green. The Z axis is blue.
+    const axesHelper = new THREE.AxesHelper(20);
+    this.scene.add(axesHelper);
 
     // material
     this.material = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 2 });
 
     // line
-    this.line = new THREE.Line(this.geometry, this.material) as any;
+    this.line = new THREE.Line(this.geometry, this.material);
     this.scene.add(this.line);
 
-    this.index = 0;
+    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
   }
 
   public ngOnDestroy() {
     this.cancelAnimation();
-  }
-
-  public checkRotation() {
-    var x = this.camera.position.x,
-      y = this.camera.position.y,
-      z = this.camera.position.z;
-
-    this.camera.position.x = x * Math.cos(this.rotSpeed) + z * Math.sin(this.rotSpeed);
-    this.camera.position.z = z * Math.cos(this.rotSpeed) - x * Math.sin(this.rotSpeed);
-    this.camera.lookAt(this.scene.position);
   }
 
   public start() {
@@ -85,7 +75,7 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
   }
 
   public draw(x: number, y: number, z: number) {
-    var positions = this.line.geometry.attributes.position.array;
+    var positions = this.line.geometry.attributes.position.array as Float32Array;
     this.line.geometry.attributes.position.needsUpdate = true;
 
     positions[this.index++] = x;
@@ -93,7 +83,6 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
     positions[this.index++] = z;
 
     this.line.geometry.setDrawRange(0, this.index);
-    this.checkRotation();
     this.renderer.render(this.scene, this.camera);
   }
 

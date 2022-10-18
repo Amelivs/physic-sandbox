@@ -41,8 +41,8 @@ export class MandelbrotComponent implements OnInit {
     }
   }
 
-  public zoomChanged(value: number) {
-    this.magnificationFactor = value;
+  public zoomChanged(value: string) {
+    this.magnificationFactor = parseInt(value);
     this.repaint();
   }
 
