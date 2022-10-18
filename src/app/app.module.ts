@@ -13,6 +13,7 @@ import { Lorenz3dComponent } from './components/lorenz-3d/lorenz-3d.component';
 import { BouncingBallComponent } from './components/bouncing-ball/bouncing-ball.component';
 import { KeplerComponent } from './components/kepler/kepler.component';
 import { MandelbrotComponent } from './components/mandelbrot/mandelbrot.component';
+import { HelixComponent } from './components/helix/helix.component';
 
 const appRoutes: Routes = [
   { path: 'pendulum', component: PendulumComponent },
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'bouncing-ball', component: BouncingBallComponent },
   { path: 'kepler', component: KeplerComponent },
   { path: 'mandelbrot', component: MandelbrotComponent },
+  { path: 'helix', component: HelixComponent },
   { path: '**', component: PendulumComponent }
 ];
 
