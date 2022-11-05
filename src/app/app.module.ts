@@ -4,16 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
-import { PendulumComponent } from './components/pendulum/pendulum.component';
-import { DoublePendulumComponent } from './components/double-pendulum/double-pendulum.component';
-import { GameOfLifeComponent } from './components/game-of-life/game-of-life.component';
-import { LangtonAntComponent } from './components/langton-ant/langton-ant.component';
-import { Lorenz2dComponent } from './components/lorenz-2d/lorenz-2d.component';
-import { Lorenz3dComponent } from './components/lorenz-3d/lorenz-3d.component';
-import { BouncingBallComponent } from './components/bouncing-ball/bouncing-ball.component';
-import { KeplerComponent } from './components/kepler/kepler.component';
-import { MandelbrotComponent } from './components/mandelbrot/mandelbrot.component';
-import { HelixComponent } from './components/helix/helix.component';
+import { PendulumComponent } from './feature-pendulum/pendulum.component';
+import { DoublePendulumComponent } from './feature-double-pendulum/double-pendulum.component';
+import { GameOfLifeComponent } from './feature-game-of-life/game-of-life.component';
+import { LangtonAntComponent } from './feature-langton-ant/langton-ant.component';
+import { Lorenz2dComponent } from './feature-lorenz-2d/lorenz-2d.component';
+import { Lorenz3dComponent } from './feature-lorenz-3d/lorenz-3d.component';
+import { BouncingBallComponent } from './feature-bouncing-ball/bouncing-ball.component';
+import { KeplerComponent } from './feature-kepler/kepler.component';
+import { MandelbrotComponent } from './feature-mandelbrot/mandelbrot.component';
+import { HelixComponent } from './feature-helix/helix.component';
 
 const appRoutes: Routes = [
   { path: 'pendulum', component: PendulumComponent },

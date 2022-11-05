@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
-import { RendererComponent } from '../renderer/renderer.component';
-import { Pendulum } from '../../model/pendulum';
+import { RendererComponent } from '../shared/ui/renderer.component';
+import { Pendulum } from './pendulum';
 
 @Component({
     selector: 'app-pendulum',

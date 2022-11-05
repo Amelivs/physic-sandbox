@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { BouncingBall } from './bouncing-ball';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { RendererComponent } from '../renderer/renderer.component';
-import { BouncingBall } from '../../model/boucing-ball';
 
 @Component({
   selector: 'app-bouncing-ball',

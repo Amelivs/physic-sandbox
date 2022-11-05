@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
-import { Helix } from '../../model/helix';
 import * as THREE from 'Three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { Helix } from './helix';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { Lorenz } from '../../model/lorenz';
-import { RendererComponent } from '../renderer/renderer.component';
 
 @Component({
   selector: 'app-helix',
@@ -26,6 +25,9 @@ export class HelixComponent extends RendererComponent implements OnInit, OnDestr
   public line: THREE.Line;
   public index = 0;
   public controls: OrbitControls;
+  public pointsPerFrame = 20;
+  public positions: Float32Array;
+  public posAttribute: THREE.BufferAttribute;
 
   constructor() {
     super();
@@ -51,8 +53,9 @@ export class HelixComponent extends RendererComponent implements OnInit, OnDestr
     this.geometry = new THREE.BufferGeometry();
 
     // attributes
-    var positions = new Float32Array(this.MAX_POINTS * 3); // 3 vertices per point
-    this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    this.positions = new Float32Array(this.MAX_POINTS * 3); // 3 vertices per point
+    this.posAttribute = new THREE.BufferAttribute(this.positions, 3)
+    this.geometry.setAttribute('position', this.posAttribute);
 
     // An axis object to visualize the 3 axes in a simple way.
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -78,24 +81,35 @@ export class HelixComponent extends RendererComponent implements OnInit, OnDestr
   }
 
   public draw(x: number, y: number, z: number) {
-    var positions = this.line.geometry.attributes.position.array as Float32Array;
-    this.line.geometry.attributes.position.needsUpdate = true;
+    this.posAttribute.needsUpdate = true;
 
-    positions[this.index++] = x;
-    positions[this.index++] = y;
-    positions[this.index++] = z;
+    this.positions[this.index++] = x;
+    this.positions[this.index++] = y;
+    this.positions[this.index++] = z;
 
-    this.line.geometry.setDrawRange(0, this.index);
+    if (this.index > 6) {
+      this.line.geometry.setDrawRange(0, this.index);
+    }
+    else {
+      this.line.geometry.setDrawRange(0, this.index);
+    }
+
+
     this.renderer.render(this.scene, this.camera);
   }
 
   public repaint() {
-    let result = this.helixGenerator.next();
-    if (result.done === true) {
+    if (this.index >= this.MAX_POINTS) {
       this.renderer.render(this.scene, this.camera);
       return
     }
-    
-    this.draw(result.value.x, result.value.Re, result.value.Im);
+    for (let i = 0; i < this.pointsPerFrame; i++) {
+      let result = this.helixGenerator.next();
+      if (result.done === true) {
+        this.renderer.render(this.scene, this.camera);
+        return
+      }
+      this.draw(result.value.x, result.value.Re, result.value.Im);
+    }
   }
 }

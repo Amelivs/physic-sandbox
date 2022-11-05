@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy,ViewChild, ElementRef } from '@angular/core';
+import { DoublePendulum } from './double-pendulum';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { RendererComponent } from '../renderer/renderer.component';
-import { DoublePendulum } from '../../model/double-pendulum';
 
 @Component({
   selector: 'app-double-pendulum',

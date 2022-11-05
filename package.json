@@ -7,7 +7,7 @@
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "ng lint --fix",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "^12.2.16",
     "@angular/router": "^12.2.16",
     "@types/three": "^0.144.0",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.6.2",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.1",
     "rxjs": "^6.6.7",

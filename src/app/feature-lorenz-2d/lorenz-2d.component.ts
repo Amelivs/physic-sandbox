@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Lorenz } from '../shared/utils/lorenz';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { Lorenz } from '../../model/lorenz';
-import { RendererComponent } from '../renderer/renderer.component';
 
 @Component({
   selector: 'app-lorenz-2d',

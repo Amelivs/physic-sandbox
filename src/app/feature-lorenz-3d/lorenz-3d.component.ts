@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import * as THREE from 'Three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { Lorenz } from '../shared/utils/lorenz';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { Lorenz } from '../../model/lorenz';
-import { RendererComponent } from '../renderer/renderer.component';
 
 @Component({
   selector: 'app-lorenz-3d',
@@ -25,6 +25,7 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
   public line: THREE.Line;
   public index = 0;
   public controls: OrbitControls;
+  public pointsPerFrame = 2000;
 
   constructor() {
     super();
@@ -36,7 +37,7 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
 
   public ngOnInit() {
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    this.camera = new THREE.PerspectiveCamera();
 
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(600, 600);
@@ -87,7 +88,14 @@ export class Lorenz3dComponent extends RendererComponent implements OnInit, OnDe
   }
 
   public repaint() {
-    let { x, y, z } = this.lorenz.next();
-    this.draw(x, y, z);
+    if (this.index >= this.MAX_POINTS) {
+      this.renderer.render(this.scene, this.camera);
+      return
+    }
+
+    for (let i = 0; i < this.pointsPerFrame; i++) {
+      let { x, y, z } = this.lorenz.next();
+      this.draw(x, y, z);
+    }
   }
 }

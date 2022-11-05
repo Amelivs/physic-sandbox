@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { Mandelbrot } from '../../model/mandelbrot';
+
 
 @Component({
   selector: 'app-mandelbrot',

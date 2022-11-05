@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Langton } from './langton-ant';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { RendererComponent } from '../renderer/renderer.component';
-import { Langton } from '../../model/langton-ant';
 
 @Component({
   selector: 'app-langton-ant',

@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Kepler } from './kepler';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { RendererComponent } from '../renderer/renderer.component';
-import { Kepler } from '../../model/kepler';
 
 @Component({
   selector: 'app-kepler',

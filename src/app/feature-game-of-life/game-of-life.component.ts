@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { GameOfLife } from './game-of-life';
+import { RendererComponent } from '../shared/ui/renderer.component';
 
-import { RendererComponent } from '../renderer/renderer.component';
-import { GameOfLife } from '../../model/game-of-life';
 
 @Component({
   selector: 'app-game-of-life',
